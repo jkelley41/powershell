@@ -17,11 +17,13 @@ $driveLetter = Read-Host "Enter capital drive letter, ex. 'B': "
 # Prompt for NewFileSystemLabel
 $newFileSystemLabel = Read-Host "Enter label for drive: "
 
+# Initialize selected disk
+Initialize-Disk -Number $diskSelection
+
 # Clear selected disk
 Get-Disk $diskSelection | Clear-Disk -RemoveData
 
-# Initialize selected disk
-Initialize-Disk -Number $diskSelection
+
 
 # Create partition and format as NTFS
 New-Partition -DiskNumber $diskSelection -UseMaximumSize -IsActive -DriveLetter $driveLetter | Format-Volume -FileSystem NTFS -NewFileSystemLabel $newFileSystemLabel
