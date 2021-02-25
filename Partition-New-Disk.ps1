@@ -18,8 +18,8 @@ $driveLetter = Read-Host "Enter capital drive letter, ex. 'B': "
 $newFileSystemLabel = Read-Host "Enter label for drive: "
 
 # Clear selected disk
-Write-Host "Clearing Disk..." -BackgroundColor DarkGreen
-Get-Disk $diskSelection | Clear-Disk -RemoveData
+#Write-Host "Clearing Disk..." -BackgroundColor DarkGreen
+#Get-Disk $diskSelection | Clear-Disk -RemoveData
 
 # Initialize selected disk
 Write-Host "Initializing Disk..." -BackgroundColor DarkGreen
