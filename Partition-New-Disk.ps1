@@ -17,13 +17,13 @@ $driveLetter = Read-Host "Enter capital drive letter, ex. 'B': "
 # Prompt for NewFileSystemLabel
 $newFileSystemLabel = Read-Host "Enter label for drive: "
 
-# Initialize selected disk
-Write-Host "Initializing Disk..." -BackgroundColor DarkGreen
-Initialize-Disk -Number $diskSelection
-
 # Clear selected disk
 Write-Host "Clearing Disk..." -BackgroundColor DarkGreen
 Get-Disk $diskSelection | Clear-Disk -RemoveData
+
+# Initialize selected disk
+Write-Host "Initializing Disk..." -BackgroundColor DarkGreen
+Initialize-Disk -Number $diskSelection
 
 # Create partition and format as NTFS
 Write-Host "Partitioning and Formatting..." -BackgroundColor DarkGreen
