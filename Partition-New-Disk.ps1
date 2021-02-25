@@ -27,7 +27,7 @@ Initialize-Disk -Number $diskSelection
 
 # Create partition and format as NTFS
 Write-Host "Partitioning and Formatting..." -BackgroundColor DarkGreen
-New-Partition -DiskNumber $diskSelection -UseMaximumSize -DriveLetter $driveLetter | Format-Volume -FileSystem NTFS -NewFileSystemLabel $newFileSystemLabel
+New-Partition -DiskNumber $diskSelection -UseMaximumSize -DriveLetter $driveLetter| Format-Volume -FileSystem NTFS -NewFileSystemLabel $newFileSystemLabel
 
 Write-Host "Done!" -BackgroundColor Green
 # End of Script
