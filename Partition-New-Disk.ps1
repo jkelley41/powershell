@@ -20,6 +20,9 @@ $newFileSystemLabel = Read-Host "Enter label for drive: "
 # Clear selected disk
 Get-Disk $diskSelection | Clear-Disk -RemoveData
 
+# Initialize selected disk
+Initialize-Disk -Number $diskSelection
+
 # Create partition and format as NTFS
 New-Partition -DiskNumber $diskSelection -UseMaximumSize -IsActive -DriveLetter $driveLetter | Format-Volume -FileSystem NTFS -NewFileSystemLabel $newFileSystemLabel
 
