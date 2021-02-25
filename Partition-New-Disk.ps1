@@ -23,8 +23,6 @@ Initialize-Disk -Number $diskSelection
 # Clear selected disk
 Get-Disk $diskSelection | Clear-Disk -RemoveData
 
-
-
 # Create partition and format as NTFS
 New-Partition -DiskNumber $diskSelection -UseMaximumSize -IsActive -DriveLetter $driveLetter | Format-Volume -FileSystem NTFS -NewFileSystemLabel $newFileSystemLabel
 
