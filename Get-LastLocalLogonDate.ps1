@@ -1,4 +1,11 @@
-﻿##--------------------------------------------------------------------------
+﻿<#
+    Get-LastLocalLogonDate.ps1
+    Gets and outputs last logon of local users to txt file
+    Author: Jake Kelley
+#>
+
+
+##--------------------------------------------------------------------------
 ##    ELEVATE SCRIPT PRIVILEGES TO ADMINISTRATOR
 ##--------------------------------------------------------------------------
 If (-NOT ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator))

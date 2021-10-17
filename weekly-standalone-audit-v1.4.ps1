@@ -1,18 +1,18 @@
-﻿#############################################################################################################################
-##    weekly-standalone-audit-v1.4.ps1                                                                                     ##
-##    Version 1.4                                                                                                          ##
-##    Last Updated by Jake Kelley 2021-08-04                                                                               ##
-##    Parses Security Logs into html files for easy review by IA. Copies evtx & html files to backup target, if specified. ##
-##    Right-click, Run with Powershell                                                                                     ##
-#############################################################################################################################
+﻿<#
+    weekly-standalone-audit-v1.4.ps1                                                                                  
+    Version 1.4                                                                                                        
+    Last Updated by Jake Kelley 2021-08-04                                                                              
+    Parses Security Logs into html files for easy review by IA. Copies evtx & html files to backup target, if specified.
+    Event IDs were chosen to coordinate with NIST 800-53 auditing requirements
+    Right-click, Run with Powershell                                                                            
+#>
 
 <#
-
-ALL SYSTEMS:                     UNCOMMENT LINE 269 - CLEARS AND EXPORTS SECURITY LOG
-                                 COMMENT LINE 270 - EXPORT SECURITY LOG ONLY, NO CLEAR
-                                 SET LINES 282-290 FOR APPROPRIATE CLASSIFICATION
+    USER-VARIABLE CHANGES:
+    ALL SYSTEMS                  SET EXPORT OR CLEAR IN BELOW SECTION
+                                 SET APPROPRIATE CLASSIFICATION IN BELOW SECTION
                                  
-PEER-TO-PEER / DOMAINS:          SET LINE 82 TO NETWORK SHARE LOCATION FOR AUDIT LOGS
+    PEER-TO-PEER / DOMAINS       SET LINE 82 TO NETWORK SHARE LOCATION FOR AUDIT LOGS
 
 #>
 
@@ -277,7 +277,7 @@ if(!(Test-Path -path $EVTXRootAppLog)) {
 if(!(Test-Path -path $EVTXRootSystem)) {
 		New-Item $EVTXRootSystem -type directory
 }
-
+<# --- EXPORT OR CLEAR --- #>
 # Uses Windows events Command Line Utility to clear the security log and back up to an evtx file. epl exports, cl clears
 #wevtutil cl Security /bu:$EVTXFilename
 #wevtutil cl Application /bu:$EVTXFilenameAppLog
@@ -285,6 +285,7 @@ if(!(Test-Path -path $EVTXRootSystem)) {
 wevtutil epl Security $EVTXFilename
 wevtutil epl Application $EVTXFilenameAppLog
 wevtutil epl System $EVTXFilenameSystem
+<# --- EXPORT OR CLEAR --- #>
 
 # Gather the relevant auditable events.
 $Events = Get-WinEvent -FilterXml $XMLFilter
@@ -296,6 +297,7 @@ $Events = Get-WinEvent -FilterXml $XMLFilter
 ##    CSS/HTML STYLES AND VARIABLES     
 ##--------------------------------------------------------------------------
 
+<# --- SET CLASSIFICATION --- #>
 # HTML Banner Variables - Uncomment desired variables
 $classification = "UNCLASSIFIED"
 #$classification = "SECRET"
@@ -305,6 +307,7 @@ $color = "green" #unclassified
 #$color = "red" #secret
 #$color = "DarkOrange" #top secret
 #$color = "gold" #top secret//sci
+<# --- SET CLASSIFICATION --- #>
 
 # Get DAT Version Variables
 $sdsDats = if(Test-Path $sdsDatsFile) { (get-content "$sdsDatsFile") | Select-String -Pattern '[0-9]{8}' -AllMatches | % { $_.Matches } | % { $_.Value } }

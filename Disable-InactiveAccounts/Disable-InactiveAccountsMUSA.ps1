@@ -1,12 +1,12 @@
-﻿#############################################
-## Disable-InactiveAccountsMUSA.ps1        ##
-## Last modified by Jake Kelley 11DEC2020  ##
-##                                         ##
-## Checks for accounts inactive for longer ##
-## than $activityThreshold, disables       ##
-## respective accounts, creates event log, ##
-## and outputs HTML log to $htmlPath       ## 
-#############################################
+﻿<#
+    Disable-InactiveAccountsMUSA.ps1
+    Last modified by Jake Kelley 11DEC2020
+
+    Checks for accounts inactive for longer
+    than $activityThreshold, disables       
+    respective accounts, creates event log,
+    and outputs HTML log to $htmlPath
+#>
 
 ##--------------------------------------------------------------------------
 ##    ELEVATE SCRIPT PRIVILEGES TO ADMINISTRATOR
@@ -25,7 +25,7 @@ If (-NOT ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
 # Set the number of days allowed ($activityThreshold) since last logon
 $activityThreshold = 90
 # Set account $exclusions to ignore. Excluded accounts will not be disabled.
-$exclusions = "WDAGUtilityAccount", "DefaultAccount", "dirty.harry"
+$exclusions = "WDAGUtilityAccount", "DefaultAccount", "administrator"
 # Query to check date
 $daysInactive = (Get-Date).AddDays(-($ActivityThreshold))
 $body = @"

@@ -3,6 +3,9 @@
     Author: Jake Kelley
     Date: 24 AUG 2021
     Revision 1.0
+    
+    Accepts offline Microsoft patches for Win10/Server 2016/2019,
+    then applies SSUs followed by cumulative updates
 
     Patches must be placed in $UpdatePath, defined below, typically "C:\patches".
     Patches must have "ssu" or "cumulative" in front of file name to be detected.

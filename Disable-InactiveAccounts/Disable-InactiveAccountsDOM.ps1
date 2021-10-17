@@ -1,7 +1,7 @@
-﻿#############################################
-## Disable-InactiveAccountsDOM.ps1         ##
-## Last modified by Jake Kelley 11NOV2020  ##  
-#############################################
+﻿<#
+    Disable-InactiveAccountsDOM.ps1
+    Last modified by Jake Kelley 11NOV2020
+#>
 
 <# Set msDS-LogonTimeSyncInterval (days) to '1'.
         By default lastLogonDate only replicates between DCs every 9-14 
@@ -24,7 +24,7 @@ $daysInactive=(Get-Date).AddDays(-($activityThreshold))
 $inactiveScanCSV = "C:\ADMIN\Inactive_Scan\InactiveUsers_$(Get-Date -Format MM-dd-yyyy_HHmm).csv"
 $neverLoggedInCSV = "C:\ADMIN\NeverLoggedIn_Scan\InactiveUsers_$(Get-Date -Format MM-dd-yyyy_HHmm).csv"
 
-$exclusions = "WDAGUtilityAccount", "DefaultAccount", "dirty.harry", "svc-pdq"
+$exclusions = "WDAGUtilityAccount", "DefaultAccount", "administrator"
 
 
 #----------------------------

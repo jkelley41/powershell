@@ -1,8 +1,8 @@
-﻿###########################################################################################
-##    Generate-Baseline.ps1                                                              ##
-##    Last Updated by Jake Kelley 11/24/2020                                             ##
-##    Compiles hardware and software present in system for hardware/software baselines   ##
-###########################################################################################
+﻿<#
+    Generate-Baseline.ps1
+    Last Updated by Jake Kelley 11/24/2020
+    Compiles hardware and software present in system for hardware/software baselines
+#>
 
 ##--------------------------------------------------------------------------
 ##    Variables
@@ -133,6 +133,7 @@ $motherboard = Get-CimInstance -ClassName Win32_Baseboard | ConvertTo-Html -Prop
 
 $raminfo = Get-CimInstance -ClassName Win32_PhysicalMemory | ConvertTo-Html -Property DeviceLocator, Manufacturer, Capacity, SerialNumber -Body $body
 
+# MAY NOT PROPERLY DETECT NVME SSD >> RESEARCH METHOD FOR CORRECT DETECTION
 $storage = Get-CimInstance -ClassName Win32_DiskDrive | ConvertTo-Html -Property Manufacturer, Caption, Model, Size, Partitions, SerialNumber -Body $body
 
 
