@@ -159,12 +159,6 @@ $AuditBackupHostnameHTMLRoot = $AuditBackupHostnameRoot + "html_files\"
 #   4657	A registry value was changed
 #   4658	A handle to an object was closed
 #   4663	An attempt was made to access an object
-#   ####4697	An attempt was made to install a service
-#   ####4698	Events related to Windows scheduled tasks being created, modified, deleted, enabled or disabled
-#   ####4699	Events related to Windows scheduled tasks being created, modified, deleted, enabled or disabled
-#   ####4700	Events related to Windows scheduled tasks being created, modified, deleted, enabled or disabled
-#   ####4701	Events related to Windows scheduled tasks being created, modified, deleted, enabled or disabled
-#   ####4702	Events related to Windows scheduled tasks being created, modified, deleted, enabled or disabled
 #   4719	System audit policy was changed.
 #   4720	A user account was created
 #   4722	A user account was enabled
@@ -179,17 +173,23 @@ $AuditBackupHostnameHTMLRoot = $AuditBackupHostnameRoot + "html_files\"
 #   4755	A privileged universal group was modified
 #   4756	A user was added to a privileged universal group
 #   4767	A user account was unlocked
-#   ####4772	A Kerberos authentication ticket request failed
 #   4800    The workstation was locked
 #   4801    The workstation was unlocked
-#   ####4777	The domain controller failed to validate the credentials of an account.
-#   ####4946	A rule was added to the Windows Firewall exception list
-#   ####4947	A rule was modified in the Windows Firewall exception list
-#   ####4950	A setting was changed in Windows Firewall
-#   ####4954	Group Policy settings for Windows Firewall has changed
-#   ####5025	The Windows Firewall service has been stopped
-#   ####5157	Windows Filtering Platform blocked a connection
-#   ####5447	A Windows Filtering Platform filter was changed
+# removed  4697	An attempt was made to install a service
+# removed  4698	Events related to Windows scheduled tasks being created, modified, deleted, enabled or disabled
+# removed  4699	Events related to Windows scheduled tasks being created, modified, deleted, enabled or disabled
+# removed  4700	Events related to Windows scheduled tasks being created, modified, deleted, enabled or disabled
+# removed  4701	Events related to Windows scheduled tasks being created, modified, deleted, enabled or disabled
+# removed  4702	Events related to Windows scheduled tasks being created, modified, deleted, enabled or disabled
+# removed  4772	A Kerberos authentication ticket request failed
+# removed  4777	The domain controller failed to validate the credentials of an account.
+# removed  4946	A rule was added to the Windows Firewall exception list
+# removed  4947	A rule was modified in the Windows Firewall exception list
+# removed  4950	A setting was changed in Windows Firewall
+# removed  4954	Group Policy settings for Windows Firewall has changed
+# removed  5025	The Windows Firewall service has been stopped
+# removed  5157	Windows Filtering Platform blocked a connection
+# removed  5447	A Windows Filtering Platform filter was changed
 
 
 # Specify the relevant security events that we want to audit. It is formatted for an XPath query.
@@ -278,7 +278,7 @@ if(!(Test-Path -path $EVTXRootSystem)) {
 		New-Item $EVTXRootSystem -type directory
 }
 <# --- EXPORT OR CLEAR --- #>
-# Uses Windows events Command Line Utility to clear the security log and back up to an evtx file. epl exports, cl clears
+# Uses Windows events Command Line Utility to clear the security log and back up to an evtx file. epl exports, cl clears and backs up
 #wevtutil cl Security /bu:$EVTXFilename
 #wevtutil cl Application /bu:$EVTXFilenameAppLog
 #wevtutil cl System /bu:$EVTXFilenameSystem
